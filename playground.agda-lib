@@ -1,0 +1,4 @@
+name: playground
+include: .
+depend: cubical
+flags: --cubical --no-import-sorts
