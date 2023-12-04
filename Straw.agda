@@ -41,10 +41,6 @@ wall i j = hfill (λ k → λ {
     (i = i1 ) → seam k
   }) (inS (edge i)) j
 
-Straw≡Loop : Straw ≡ Loop 
-Straw≡Loop = ua {!   !} 
-
-
 straw→loop : Straw → Loop
 straw→loop a = p
 straw→loop b = p
@@ -55,8 +51,8 @@ loop→straw : Loop → Straw
 loop→straw p = a
 loop→straw (loop i) = edge i 
 
-straw≃loop : Straw ≃ Loop
-straw≃loop = isoToEquiv (iso straw→loop loop→straw sect ret) where 
+Straw≃Loop : Straw ≃ Loop
+Straw≃Loop = isoToEquiv (iso straw→loop loop→straw sect ret) where 
   sect : ∀ z → straw→loop (loop→straw z) ≡ z
   sect p = refl
   sect (loop i) = refl
@@ -66,7 +62,6 @@ straw≃loop = isoToEquiv (iso straw→loop loop→straw sect ret) where
   ret (seam i) = λ j → seam (i ∧ j)
   ret (edge i) = refl
   
-strawIsLoop : Straw ≡ Loop 
-strawIsLoop = ua straw≃loop
-  
+Straw≡Loop : Straw ≡ Loop 
+Straw≡Loop = ua Straw≃Loop
   
